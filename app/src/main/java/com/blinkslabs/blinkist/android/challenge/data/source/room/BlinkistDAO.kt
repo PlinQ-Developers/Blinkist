@@ -5,16 +5,33 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.blinkslabs.blinkist.android.challenge.domain.models.Book
+import com.blinkslabs.blinkist.android.challenge.utils.SortOrder
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BlinkistDAO {
 
-    @Query("SELECT * FROM books_table")
-    fun getBooksList(): Flow<List<Book>>
+    fun getBooks(
+        sortOrder: SortOrder,
+    ): Flow<List<Book>> =
+        when (sortOrder) {
+            SortOrder.BY_DATE -> getBooksSortedByDatePublished()
+            SortOrder.BY_NAME -> getBooksSortedByNameOrderAlphabetically()
+        }
+
+    @Query("SELECT * FROM books_table ORDER BY name ASC")
+    fun getBooksSortedByNameOrderAlphabetically(): Flow<List<Book>>
+
+    @Query("SELECT * FROM books_table ORDER BY strftime('%Y-%m-%d', publishDate) DESC")
+    fun getBooksSortedByDatePublished(): Flow<List<Book>>
+
+    @Query("SELECT * FROM books_table WHERE id = :bookId")
+    fun getBookByItemId(
+        bookId: String,
+    ): Flow<Book>
 
     @Insert(
-        onConflict = OnConflictStrategy.REPLACE,
+        onConflict = OnConflictStrategy.IGNORE,
     )
     suspend fun updateBookList(
         bookList: List<Book>,

@@ -1,17 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bookListFragment_rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.books.bookList.BookListFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bookListFragment_booksList"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:padding="10dp"
-        tools:listitem="@layout/book_list_item" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bookListFragment_fragmentHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/bookListFragment_menuIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_outline_card"
+                android:padding="10dp"
+                android:src="@drawable/ic_action_menu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/bookListFragment_sortIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_outline_card"
+                android:padding="10dp"
+                android:src="@drawable/ic_action_sort"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/bookListFragment_headerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:fontFamily="@font/titillium_semi"
+                android:text="Discover\nexciting books"
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bookListFragment_menuIcon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bookListFragment_booksList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/bookListFragment_fragmentHeader"
+            android:layout_marginTop="20dp"
+            android:clipToPadding="false"
+            android:padding="10dp"
+            tools:listitem="@layout/book_list_item" />
+
+
+        <RelativeLayout
+            android:id="@+id/bookListFragment_errorContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/bg_rounded_card"
+            android:backgroundTint="@color/colorAccent"
+            android:padding="15dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/bookListFragment_errorTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/sofia_semi"
+                android:text="Error Message:"
+                android:textColor="@color/lightOnSecondary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/bookListFragment_errorMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bookListFragment_errorTitle"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/sofia_regular"
+                android:textColor="@color/lightOnSecondary"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

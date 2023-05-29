@@ -1,6 +1,7 @@
 package com.blinkslabs.blinkist.android.challenge.di
 
 import com.blinkslabs.blinkist.android.challenge.domain.interactors.FetchNetworkBookListUseCase
+import com.blinkslabs.blinkist.android.challenge.domain.interactors.GetBookItemByIdUseCase
 import com.blinkslabs.blinkist.android.challenge.domain.interactors.GetSavedBooksListUseCase
 import com.blinkslabs.blinkist.android.challenge.domain.repositories.BooksRepository
 import dagger.Module
@@ -30,6 +31,16 @@ object InteractorsComponent {
     ): FetchNetworkBookListUseCase {
         return FetchNetworkBookListUseCase(
             booksRepository = repository,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetBookItemsByIdUseCase(
+        repository: BooksRepository,
+    ): GetBookItemByIdUseCase {
+        return GetBookItemByIdUseCase(
+            repository = repository,
         )
     }
 }

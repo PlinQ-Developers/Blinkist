@@ -4,44 +4,83 @@
     android:id="@+id/bookListItem_rootView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_rounded_card"
     android:layout_marginBottom="10dp"
-    android:background="#F5F5F5"
-    android:padding="15dp">
+    android:padding="8dp">
 
     <ImageView
         android:id="@+id/bookListItem_bookCover"
-        android:layout_width="65dp"
-        android:layout_height="65dp" />
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bg_rounded_card"
+        android:scaleType="centerCrop" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bookListItem_detailsContainer"
+        android:id="@+id/bookListItem_bookInfoContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/bg_rounded_card"
         android:layout_toEndOf="@+id/bookListItem_bookCover">
 
         <TextView
             android:id="@+id/bookListItem_bookTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
             android:ellipsize="end"
+            android:fontFamily="@font/sofia_medium"
             android:maxLines="1"
-            android:text="This is a sample title"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/bookListItem_bookDescription"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/transparent"
             android:ellipsize="end"
+            android:fontFamily="@font/sofia_regular"
             android:maxLines="1"
-            android:text="This is a sample title"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookListItem_bookTitle" />
+
+        <ImageView
+            android:id="@+id/bookListFragment_splitIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:alpha="0.5"
+            android:src="@drawable/ic_split"
+            app:layout_constraintBottom_toBottomOf="@+id/bookListItem_bookDescription"
+            app:layout_constraintStart_toEndOf="@+id/bookListItem_bookDescription"
+            app:layout_constraintTop_toTopOf="@+id/bookListItem_bookDescription" />
+
+        <TextView
+            android:id="@+id/bookListItem_bookPublishYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:fontFamily="@font/sofia_regular"
+            android:maxLines="1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bookListItem_bookDescription"
+            app:layout_constraintStart_toEndOf="@+id/bookListFragment_splitIcon"
+            app:layout_constraintTop_toTopOf="@+id/bookListItem_bookDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

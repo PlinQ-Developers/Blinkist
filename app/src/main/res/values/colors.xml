@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primaryError">#F64E60</color>
+    <color name="primarySuccess">#00E8AE</color>
+    <color name="primaryWarning">#FFC700</color>
+
+    <color name="lightPrimary">#125BE4</color>
+    <color name="lightPrimaryVariant">#092E72</color>
+    <color name="lightOnPrimary">#FFFFFF</color>
+
+    <color name="lightSecondary">#010A1C</color>
+    <color name="lightSecondaryVariant">#01050E</color>
+    <color name="lightOnSecondary">#ECF8FF</color>
+
+    <color name="lightBackground">#F6F6F8</color>
+    <color name="lightOnBackground">#80858e</color>
+
+    <color name="lightSurface">#FFFFFF</color>
+    <color name="lightOnSurface">#010A1C</color>
+
+
+    <color name="darkPrimary">#125BE4</color>
+    <color name="darkPrimaryVariant">#092E72</color>
+    <color name="darkOnPrimary">#D1D1D1</color>
+
+    <color name="darkSecondary">#010A1C</color>
+    <color name="darkSecondaryVariant">#01050E</color>
+    <color name="darkOnSecondary">#949494</color>
+
+    <color name="darkBackground">#111317</color>
+    <color name="darkOnBackground">#949494</color>
+
+    <color name="darkSurface">#1A1C22</color>
+    <color name="darkOnSurface">#949494</color>
+
+    <color name="lightText">#A9A8AF</color>
+
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
 </resources>

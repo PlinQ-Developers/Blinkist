@@ -1,9 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Blinkist" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+    <style name="Theme.Blinkist" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/lightPrimary</item>
+        <item name="colorPrimaryVariant">@color/lightPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/lightOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/lightSecondary</item>
+        <item name="colorSecondaryVariant">@color/lightSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/lightOnSecondary</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/lightBackground</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:background">@color/lightBackground</item>
 
-    <style name="Theme.Blinkist" parent="Base.Theme.Blinkist" />
+    </style>
 </resources>

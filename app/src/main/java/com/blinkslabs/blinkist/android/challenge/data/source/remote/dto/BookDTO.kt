@@ -9,6 +9,11 @@ data class BookDTO(
     val author: String,
     val publishDate: LocalDate,
     val coverImageUrl: String,
+    val description: String,
+    val rating: Double,
+    val category: String,
+    val pages: Int,
+    val estimatedReadTime: String,
 )
 
 fun BookDTO.toBook(): Book {
@@ -18,5 +23,10 @@ fun BookDTO.toBook(): Book {
         author = author,
         publishDate = publishDate.toString(),
         coverImageUrl = coverImageUrl,
+        description = description,
+        rating = rating,
+        category = category,
+        pages = pages,
+        estimatedReadTime = estimatedReadTime,
     )
 }

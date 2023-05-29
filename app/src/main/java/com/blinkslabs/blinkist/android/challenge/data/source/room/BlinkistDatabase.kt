@@ -18,5 +18,6 @@ abstract class BlinkistDatabase : RoomDatabase() {
 
     companion object {
         const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION_V1 = 1
     }
 }
