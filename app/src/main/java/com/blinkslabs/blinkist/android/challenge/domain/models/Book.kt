@@ -1,5 +1,6 @@
 package com.blinkslabs.blinkist.android.challenge.domain.models
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -13,10 +14,11 @@ data class Book(
     val author: String,
     val publishDate: String,
     val coverImageUrl: String,
-    val description: String,
-    val rating: Double,
-    val category: String,
-    val pages: Int,
-    val estimatedReadTime: String,
+    val description: String?,
+    val rating: Double?,
+    val category: String?,
+    val pages: Int?,
+    val estimatedReadTime: String?,
+    @ColumnInfo(defaultValue = false.toString())
     val bookmarked: Boolean = false,
 )

@@ -31,7 +31,7 @@ interface BlinkistDAO {
     ): Flow<Book>
 
     @Insert(
-        onConflict = OnConflictStrategy.IGNORE,
+        onConflict = OnConflictStrategy.REPLACE,
     )
     suspend fun updateBookList(
         bookList: List<Book>,
