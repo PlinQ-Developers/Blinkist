@@ -30,8 +30,14 @@ interface BlinkistDAO {
         bookId: String,
     ): Flow<Book>
 
+    @Query("UPDATE books_table SET bookmarked = :bookmarkedStatus WHERE id = :bookId")
+    suspend fun updateBookmarkStatus(
+        bookmarkedStatus: Boolean,
+        bookId: String,
+    )
+
     @Insert(
-        onConflict = OnConflictStrategy.REPLACE,
+        onConflict = OnConflictStrategy.IGNORE,
     )
     suspend fun updateBookList(
         bookList: List<Book>,

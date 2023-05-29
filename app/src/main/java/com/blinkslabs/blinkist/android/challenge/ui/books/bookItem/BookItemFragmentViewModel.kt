@@ -3,6 +3,7 @@ package com.blinkslabs.blinkist.android.challenge.ui.books.bookItem
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.blinkslabs.blinkist.android.challenge.domain.interactors.GetBookItemByIdUseCase
+import com.blinkslabs.blinkist.android.challenge.domain.interactors.SetBookmarkStatusUseCase
 import com.blinkslabs.blinkist.android.challenge.domain.models.Book
 import com.blinkslabs.blinkist.android.challenge.utils.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class BookItemFragmentViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getBookItemByIdUseCase: GetBookItemByIdUseCase,
+    private val setBookmarkStatusUseCase: SetBookmarkStatusUseCase,
 ) : BaseViewModel<BookItemFragmentContract.Event, BookItemFragmentContract.State, BookItemFragmentContract.Effect>() {
     private val selectedBookId: String? = savedStateHandle["bookItemId"]
 
@@ -32,6 +34,13 @@ class BookItemFragmentViewModel @Inject constructor(
                 setEffect {
                     BookItemFragmentContract.Effect.NavigateToBookListFragment
                 }
+            }
+
+            is BookItemFragmentContract.Event.OnUserClickBookmarkIcon -> {
+                setBookmarked(
+                    bookmarkStatus = event.bookmarkStatus,
+                    bookId = event.bookId,
+                )
             }
         }
     }
@@ -58,5 +67,17 @@ class BookItemFragmentViewModel @Inject constructor(
                 setState { copy(bookItem = book) }
             }
         }.launchIn(viewModelScope)
+    }
+
+    private fun setBookmarked(
+        bookmarkStatus: Boolean,
+        bookId: String,
+    ) {
+        viewModelScope.launch {
+            setBookmarkStatusUseCase(
+                bookmark = bookmarkStatus,
+                bookId = bookId,
+            )
+        }
     }
 }

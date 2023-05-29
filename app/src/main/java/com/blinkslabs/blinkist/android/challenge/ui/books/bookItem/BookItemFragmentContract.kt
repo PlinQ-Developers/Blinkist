@@ -19,5 +19,9 @@ class BookItemFragmentContract {
 
     sealed class Event : UiEvent {
         object OnUserClickBackIcon : Event()
+        data class OnUserClickBookmarkIcon(
+            val bookId: String,
+            val bookmarkStatus: Boolean,
+        ) : Event()
     }
 }

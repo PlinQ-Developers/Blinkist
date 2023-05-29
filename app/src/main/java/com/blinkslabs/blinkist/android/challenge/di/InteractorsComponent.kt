@@ -3,6 +3,7 @@ package com.blinkslabs.blinkist.android.challenge.di
 import com.blinkslabs.blinkist.android.challenge.domain.interactors.FetchNetworkBookListUseCase
 import com.blinkslabs.blinkist.android.challenge.domain.interactors.GetBookItemByIdUseCase
 import com.blinkslabs.blinkist.android.challenge.domain.interactors.GetSavedBooksListUseCase
+import com.blinkslabs.blinkist.android.challenge.domain.interactors.SetBookmarkStatusUseCase
 import com.blinkslabs.blinkist.android.challenge.domain.repositories.BooksRepository
 import dagger.Module
 import dagger.Provides
@@ -40,6 +41,16 @@ object InteractorsComponent {
         repository: BooksRepository,
     ): GetBookItemByIdUseCase {
         return GetBookItemByIdUseCase(
+            repository = repository,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetBookmarkStatusUseCase(
+        repository: BooksRepository,
+    ): SetBookmarkStatusUseCase {
+        return SetBookmarkStatusUseCase(
             repository = repository,
         )
     }

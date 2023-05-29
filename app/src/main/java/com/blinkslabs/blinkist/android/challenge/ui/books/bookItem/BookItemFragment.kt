@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.blinkslabs.blinkist.android.challenge.R
 import com.blinkslabs.blinkist.android.challenge.databinding.FragmentBookItemBinding
 import com.blinkslabs.blinkist.android.challenge.domain.models.Book
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -35,6 +38,11 @@ class BookItemFragment : Fragment() {
     }
 
     private fun initButtons() {
+        binding.bookItemFragmentBackButton.setOnClickListener {
+            viewModel.setEvent(
+                event = BookItemFragmentContract.Event.OnUserClickBackIcon,
+            )
+        }
     }
 
     private fun initObservers() {
@@ -45,19 +53,56 @@ class BookItemFragment : Fragment() {
         }
         lifecycleScope.launch {
             viewModel.effect.collect { effect ->
+                collectEffects(effect)
             }
         }
     }
 
     private fun initView(bookItem: Book?) {
         bookItem?.let { book: Book ->
+            val bookmarked = book.bookmarked
             binding.apply {
                 Picasso.get().load(book.coverImageUrl).into(bookItemFragmentBookCoverImage)
                 bookItemFragmentBookTitle.text = book.name
                 bookItemFragmentBookPublishYear.text = book.publishDate.split("-")[0]
-                bookItemFragmentBookDescription.text = book.author
+                bookItemFragmentBookAuthor.text = book.author
+                bookItemFragmentSynopsis.text = book.description
+                bookItemFragmentBookCategory.text = book.category
+                bookItemFragmentBookPages.text = "${book.pages} Pages"
+            }
+            if (bookmarked) {
+                binding.bookItemFragmentBookmarkButton.setImageDrawable(resources.getDrawable(R.drawable.ic_bookmark_active))
+            }
+
+            binding.bookItemFragmentBookmarkButton.setOnClickListener {
+                viewModel.setEvent(
+                    event = BookItemFragmentContract.Event.OnUserClickBookmarkIcon(
+                        bookId = book.id,
+                        bookmarkStatus = !bookmarked,
+                    ),
+                )
             }
         }
+    }
+
+    private fun collectEffects(effect: BookItemFragmentContract.Effect) {
+        when (effect) {
+            is BookItemFragmentContract.Effect.NavigateToBookListFragment -> findNavController().popBackStack()
+            is BookItemFragmentContract.Effect.ShowErrorMessage -> showErrorMessage(effect.message)
+        }
+    }
+
+    private fun showErrorMessage(message: String) {
+        val errorSnack = Snackbar.make(
+            requireView(),
+            "Error: $message",
+            Snackbar.LENGTH_INDEFINITE,
+        )
+
+        errorSnack.setAction("Ok") {
+            errorSnack.dismiss()
+        }
+        errorSnack.show()
     }
 
     override fun onDestroyView() {

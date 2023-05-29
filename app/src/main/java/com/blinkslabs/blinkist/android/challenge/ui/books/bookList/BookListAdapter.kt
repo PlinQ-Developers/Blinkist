@@ -55,6 +55,7 @@ class BookListAdapter(
                 bookListItemBookDescription.text = book.author
                 bookListItemBookPublishYear.text = book.publishDate.split("-")[0]
                 Picasso.get().load(book.coverImageUrl).into(bookListItemBookCover)
+                bookListFragmentStars.text = "${book.rating} Rated"
             }
         }
     }

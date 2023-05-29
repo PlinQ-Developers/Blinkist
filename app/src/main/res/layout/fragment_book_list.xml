@@ -14,15 +14,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bookListFragment_fragmentHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/bookListFragment_menuIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_outline_card"
                 android:padding="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_action_menu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -31,8 +31,9 @@
                 android:id="@+id/bookListFragment_sortIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_outline_card"
                 android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_action_sort"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,11 +42,15 @@
                 android:id="@+id/bookListFragment_headerTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/titillium_bold"
                 android:gravity="center"
-                android:fontFamily="@font/titillium_semi"
+                android:textColor="@color/colorPrimary"
                 android:text="Discover\nexciting books"
                 android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bookListFragment_menuIcon" />
 
@@ -60,7 +65,6 @@
             android:clipToPadding="false"
             android:padding="10dp"
             tools:listitem="@layout/book_list_item" />
-
 
         <RelativeLayout
             android:id="@+id/bookListFragment_errorContainer"

@@ -36,4 +36,11 @@ class BooksRepositoryImpl @Inject constructor(
             bookId = bookId,
         )
     }
+
+    override suspend fun setBookmarkedStatus(bookmarkStatus: Boolean, bookId: String) {
+        databaseDAO.updateBookmarkStatus(
+            bookmarkedStatus = bookmarkStatus,
+            bookId = bookId,
+        )
+    }
 }

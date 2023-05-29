@@ -9,5 +9,10 @@ interface BooksRepository {
 
     fun getBoonItemById(bookId: String): Flow<Book>
 
+    suspend fun setBookmarkedStatus(
+        bookmarkStatus: Boolean,
+        bookId: String,
+    )
+
     suspend fun updateBooksList(): Boolean
 }
